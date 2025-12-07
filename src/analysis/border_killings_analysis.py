@@ -7,6 +7,7 @@ Analyzes border killing incidents between Bangladesh and India by BSF
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 import os
 from pathlib import Path
 import warnings
@@ -53,10 +54,30 @@ class BorderKillingsAnalyzer:
             return
         
         print("\n=== SUMMARY STATISTICS ===")
-        print(f"Total years covered: {self.data_cleaned['Years'].min()} - {self.data_cleaned['Years'].max()}")
-        print(f"Total killings: {self.data_cleaned['Killed'].sum()}")
-        print(f"Total injured: {self.data_cleaned['Injured'].sum()}")
-        print(f"Average killings per year: {self.data_cleaned['Killed'].mean():.2f}")
+        print(f"Available columns: {list(self.data_cleaned.columns)}")
+        
+        # Check for common column variations
+        year_col = None
+        killed_col = None
+        injured_col = None
+        
+        for col in self.data_cleaned.columns:
+            if 'year' in col.lower():
+                year_col = col
+            elif 'killed' in col.lower():
+                killed_col = col
+            elif 'injured' in col.lower():
+                injured_col = col
+        
+        if year_col and killed_col:
+            print(f"Total years covered: {self.data_cleaned[year_col].min()} - {self.data_cleaned[year_col].max()}")
+            print(f"Total killings: {self.data_cleaned[killed_col].sum()}")
+            print(f"Average killings per year: {self.data_cleaned[killed_col].mean():.2f}")
+            
+            if injured_col:
+                print(f"Total injured: {self.data_cleaned[injured_col].sum()}")
+        else:
+            print("Could not find expected columns. Please check data structure.")
         
     def analyze_by_ruling_party_india(self, save_plot=False):
         """Analyze killings by ruling party in India"""
