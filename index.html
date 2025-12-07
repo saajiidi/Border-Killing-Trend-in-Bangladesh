@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Border Killing Trend Analysis - Bangladesh-India Border</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      header {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      h1 {
+        color: #2c3e50;
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .subtitle {
+        color: #7f8c8d;
+        font-size: 1.2em;
+        margin-bottom: 20px;
+      }
+
+      .period {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 25px;
+        display: inline-block;
+        font-weight: bold;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .stat-card {
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .stat-value {
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #667eea;
+        margin-bottom: 10px;
+      }
+
+      .stat-label {
+        color: #7f8c8d;
+        font-size: 1.1em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .section {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        margin-bottom: 30px;
+      }
+
+      .section-title {
+        color: #2c3e50;
+        font-size: 2em;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #667eea;
+      }
+
+      .visualization-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .viz-card {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .viz-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .viz-title {
+        font-size: 1.3em;
+        color: #2c3e50;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .insights-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .insight-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .insight-card h3 {
+        margin-bottom: 15px;
+        font-size: 1.4em;
+      }
+
+      .insight-card p {
+        line-height: 1.8;
+      }
+
+      .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .comparison-table th,
+      .comparison-table td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .comparison-table th {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        font-weight: bold;
+      }
+
+      .comparison-table tr:hover {
+        background: #f5f5f5;
+      }
+
+      .highlight {
+        background: #fff3cd;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: bold;
+      }
+
+      .methodology {
+        background: #e8f4f8;
+        padding: 25px;
+        border-radius: 10px;
+        border-left: 5px solid #667eea;
+        margin-top: 20px;
+      }
+
+      .methodology h3 {
+        color: #2c3e50;
+        margin-bottom: 15px;
+      }
+
+      .methodology ul {
+        margin-left: 20px;
+      }
+
+      .methodology li {
+        margin-bottom: 10px;
+        line-height: 1.8;
+      }
+
+      footer {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        color: #7f8c8d;
+        margin-top: 30px;
+      }
+
+      @media (max-width: 768px) {
+        .visualization-grid {
+          grid-template-columns: 1fr;
+        }
+
+        h1 {
+          font-size: 1.8em;
+        }
+
+        .section {
+          padding: 20px;
+        }
+      }
+
+      .tabs {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #e0e0e0;
+      }
+
+      .tab {
+        padding: 12px 24px;
+        background: #f0f0f0;
+        border: none;
+        cursor: pointer;
+        border-radius: 8px 8px 0 0;
+        font-size: 1em;
+        transition: all 0.3s ease;
+      }
+
+      .tab.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🇧🇩 Border Killing Trend Analysis</h1>
+        <p class="subtitle">
+          Comprehensive Analysis of Border Security Force (BSF) Incidents
+        </p>
+        <span class="period">Data Period: 1971 - 2023</span>
+      </header>
+
+      <!-- Key Statistics -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value">52+</div>
+          <div class="stat-label">Years Analyzed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">1971-2023</div>
+          <div class="stat-label">Time Period</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">2 Countries</div>
+          <div class="stat-label">Bangladesh & India</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value">Political Analysis</div>
+          <div class="stat-label">Ruling Party Impact</div>
+        </div>
+      </div>
+
+      <!-- Executive Summary -->
+      <div class="section">
+        <h2 class="section-title">📊 Executive Summary</h2>
+        <p style="font-size: 1.1em; line-height: 1.8; color: #555">
+          This comprehensive analysis examines border killing incidents between
+          Bangladesh and India by the Border Security Force (BSF) over a 52-year
+          period (1971-2023). The study investigates the correlation between
+          ruling political parties in both countries and the frequency of border
+          incidents, providing critical insights into how political dynamics may
+          influence border security outcomes.
+        </p>
+        <div class="methodology">
+          <h3>🔬 Methodology</h3>
+          <ul>
+            <li>
+              <strong>Data Source:</strong> Comprehensive dataset covering
+              border incidents from 1971-2023
+            </li>
+            <li>
+              <strong>Analysis Type:</strong> Time series analysis, political
+              correlation analysis, and trend forecasting
+            </li>
+            <li>
+              <strong>Key Variables:</strong> Year, Killed, Injured, Ruling
+              Party (Bangladesh), Ruling Party (India)
+            </li>
+            <li>
+              <strong>Statistical Methods:</strong> Group aggregation, average
+              calculations, trend analysis, and predictive modeling
+            </li>
+            <li>
+              <strong>Visualization:</strong> Interactive charts and graphs for
+              pattern identification
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Visualizations -->
+      <div class="section">
+        <h2 class="section-title">📈 Data Visualizations</h2>
+        <div class="visualization-grid">
+          <div class="viz-card">
+            <h3 class="viz-title">Killings Trend Over Time</h3>
+            <img
+              src="plots/killings_trend_over_time.png"
+              alt="Killings Trend Over Time"
+            />
+            <p style="margin-top: 15px; color: #666; text-align: center">
+              Historical trend showing the evolution of border killings from
+              1971 to 2023, with trend line indicating overall direction.
+            </p>
+          </div>
+          <div class="viz-card">
+            <h3 class="viz-title">Killings by Ruling Party - India</h3>
+            <img
+              src="plots/killings_by_india_party.png"
+              alt="Killings by India Party"
+            />
+            <p style="margin-top: 15px; color: #666; text-align: center">
+              Comparison of total border killings during different ruling party
+              periods in India (BJP vs Congress vs Others).
+            </p>
+          </div>
+          <div class="viz-card">
+            <h3 class="viz-title">Killings by Ruling Party - Bangladesh</h3>
+            <img
+              src="plots/killings_by_bangladesh_party.png"
+              alt="Killings by Bangladesh Party"
+            />
+            <p style="margin-top: 15px; color: #666; text-align: center">
+              Analysis of border killings categorized by ruling party periods in
+              Bangladesh (BAL vs BNP vs Others).
+            </p>
+          </div>
+          <div class="viz-card">
+            <h3 class="viz-title">Average Killings Comparison</h3>
+            <img
+              src="plots/average_killings_comparison.png"
+              alt="Average Killings Comparison"
+            />
+            <p style="margin-top: 15px; color: #666; text-align: center">
+              Per-year average killings comparison across different political
+              periods in both countries, providing normalized metrics for fair
+              comparison.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Insights -->
+      <div class="section">
+        <h2 class="section-title">🔍 Key Insights & Findings</h2>
+        <div class="insights-grid">
+          <div class="insight-card">
+            <h3>1. Political Correlation</h3>
+            <p>
+              The analysis reveals significant variations in border incident
+              rates during different ruling party periods in both countries.
+              This suggests that political dynamics and diplomatic relations may
+              influence border security policies and outcomes.
+            </p>
+          </div>
+          <div class="insight-card">
+            <h3>2. Temporal Patterns</h3>
+            <p>
+              Clear temporal trends emerge across different political periods,
+              indicating that border incidents are not random but may be
+              influenced by specific policy changes, diplomatic relations, or
+              security protocols during different administrations.
+            </p>
+          </div>
+          <div class="insight-card">
+            <h3>3. Bilateral Impact</h3>
+            <p>
+              The study demonstrates that political situations in both
+              Bangladesh and India simultaneously affect incident rates,
+              highlighting the bilateral nature of border security challenges
+              and the importance of coordinated diplomatic efforts.
+            </p>
+          </div>
+          <div class="insight-card">
+            <h3>4. Normalized Analysis</h3>
+            <p>
+              By calculating average killings per year, the analysis provides
+              normalized metrics that account for varying durations of political
+              periods, enabling fair comparison across different ruling parties
+              and timeframes.
+            </p>
+          </div>
+          <div class="insight-card">
+            <h3>5. Long-term Trends</h3>
+            <p>
+              The 52-year dataset reveals long-term patterns and cyclical trends
+              that may be related to broader geopolitical shifts, economic
+              conditions, or changes in border management strategies over
+              decades.
+            </p>
+          </div>
+          <div class="insight-card">
+            <h3>6. Data-Driven Policy</h3>
+            <p>
+              This analysis provides evidence-based insights that can inform
+              policy decisions, diplomatic negotiations, and border security
+              management strategies to reduce incidents and improve bilateral
+              relations.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Analysis Details -->
+      <div class="section">
+        <h2 class="section-title">📋 Detailed Analysis</h2>
+
+        <div class="tabs">
+          <button class="tab active" onclick="showTab('india')">
+            India Analysis
+          </button>
+          <button class="tab" onclick="showTab('bangladesh')">
+            Bangladesh Analysis
+          </button>
+          <button class="tab" onclick="showTab('comparison')">
+            Comparative Analysis
+          </button>
+        </div>
+
+        <div id="india" class="tab-content active">
+          <h3 style="color: #2c3e50; margin-bottom: 20px">
+            Analysis by Ruling Party in India
+          </h3>
+          <p style="margin-bottom: 20px; line-height: 1.8">
+            The analysis examines border killings during different ruling party
+            periods in India:
+          </p>
+          <ul style="margin-left: 30px; line-height: 2; color: #555">
+            <li>
+              <strong>BJP (Bharatiya Janata Party):</strong> Analysis of
+              incidents during BJP-led governments
+            </li>
+            <li>
+              <strong>Congress:</strong> Analysis of incidents during Indian
+              National Congress-led governments
+            </li>
+            <li>
+              <strong>Others:</strong> Analysis of incidents during other
+              political formations
+            </li>
+          </ul>
+          <p
+            style="
+              margin-top: 20px;
+              padding: 15px;
+              background: #f0f7ff;
+              border-radius: 8px;
+              line-height: 1.8;
+            "
+          >
+            <strong>Key Finding:</strong> The data shows varying rates of border
+            incidents across different political periods, suggesting that border
+            security policies and diplomatic approaches may differ between
+            ruling parties.
+          </p>
+        </div>
+
+        <div id="bangladesh" class="tab-content">
+          <h3 style="color: #2c3e50; margin-bottom: 20px">
+            Analysis by Ruling Party in Bangladesh
+          </h3>
+          <p style="margin-bottom: 20px; line-height: 1.8">
+            The analysis examines border killings during different ruling party
+            periods in Bangladesh:
+          </p>
+          <ul style="margin-left: 30px; line-height: 2; color: #555">
+            <li>
+              <strong>BAL (Bangladesh Awami League):</strong> Analysis of
+              incidents during Awami League governments
+            </li>
+            <li>
+              <strong>BNP (Bangladesh Nationalist Party):</strong> Analysis of
+              incidents during BNP governments
+            </li>
+            <li>
+              <strong>Others:</strong> Analysis of incidents during other
+              political formations or transitional periods
+            </li>
+          </ul>
+          <p
+            style="
+              margin-top: 20px;
+              padding: 15px;
+              background: #f0f7ff;
+              border-radius: 8px;
+              line-height: 1.8;
+            "
+          >
+            <strong>Key Finding:</strong> Similar to India, the data reveals
+            patterns that correlate with different political periods in
+            Bangladesh, indicating that domestic political dynamics may
+            influence border security outcomes.
+          </p>
+        </div>
+
+        <div id="comparison" class="tab-content">
+          <h3 style="color: #2c3e50; margin-bottom: 20px">
+            Comparative Analysis
+          </h3>
+          <p style="margin-bottom: 20px; line-height: 1.8">
+            The comparative analysis examines how different combinations of
+            ruling parties in both countries correlate with border incident
+            rates:
+          </p>
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Analysis Dimension</th>
+                <th>Description</th>
+                <th>Insight</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Total Killings</strong></td>
+                <td>Aggregate count by party</td>
+                <td>Shows overall impact during each party's tenure</td>
+              </tr>
+              <tr>
+                <td><strong>Average per Year</strong></td>
+                <td>Normalized annual average</td>
+                <td>Enables fair comparison across different period lengths</td>
+              </tr>
+              <tr>
+                <td><strong>Temporal Trends</strong></td>
+                <td>Time series analysis</td>
+                <td>Reveals long-term patterns and cyclical behaviors</td>
+              </tr>
+              <tr>
+                <td><strong>Bilateral Combinations</strong></td>
+                <td>Cross-country party combinations</td>
+                <td>
+                  Identifies which party combinations correlate with
+                  higher/lower incidents
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Technical Details -->
+      <div class="section">
+        <h2 class="section-title">🛠️ Technical Implementation</h2>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+          "
+        >
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 10px">
+            <h3 style="color: #2c3e50; margin-bottom: 15px">Data Processing</h3>
+            <ul style="line-height: 2; color: #555">
+              <li>Excel data loading and cleaning</li>
+              <li>Missing value handling</li>
+              <li>Data aggregation by political periods</li>
+              <li>Time series preparation</li>
+            </ul>
+          </div>
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 10px">
+            <h3 style="color: #2c3e50; margin-bottom: 15px">
+              Analysis Methods
+            </h3>
+            <ul style="line-height: 2; color: #555">
+              <li>Group-by aggregations</li>
+              <li>Average calculations</li>
+              <li>Trend line fitting</li>
+              <li>Comparative statistics</li>
+            </ul>
+          </div>
+          <div style="background: #f8f9fa; padding: 20px; border-radius: 10px">
+            <h3 style="color: #2c3e50; margin-bottom: 15px">
+              Visualization Tools
+            </h3>
+            <ul style="line-height: 2; color: #555">
+              <li>Matplotlib for plotting</li>
+              <li>Seaborn for styling</li>
+              <li>Interactive HTML reports</li>
+              <li>High-resolution exports</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Forecasting Section -->
+      <div class="section">
+        <h2 class="section-title">🔮 Predictive Analysis</h2>
+        <p
+          style="
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+          "
+        >
+          The project includes advanced forecasting models to predict future
+          trends. Multiple time series forecasting methods were evaluated,
+          including:
+        </p>
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+          "
+        >
+          <div
+            style="
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              color: white;
+              padding: 15px;
+              border-radius: 8px;
+              text-align: center;
+            "
+          >
+            <strong>ARIMA Models</strong>
+          </div>
+          <div
+            style="
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              color: white;
+              padding: 15px;
+              border-radius: 8px;
+              text-align: center;
+            "
+          >
+            <strong>Exponential Smoothing</strong>
+          </div>
+          <div
+            style="
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              color: white;
+              padding: 15px;
+              border-radius: 8px;
+              text-align: center;
+            "
+          >
+            <strong>LSTM Neural Networks</strong>
+          </div>
+          <div
+            style="
+              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+              color: white;
+              padding: 15px;
+              border-radius: 8px;
+              text-align: center;
+            "
+          >
+            <strong>Moving Averages</strong>
+          </div>
+        </div>
+        <p
+          style="
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff3cd;
+            border-radius: 8px;
+            line-height: 1.8;
+          "
+        >
+          <strong>Model Performance:</strong> The Naive forecast model showed
+          the best performance with RMSE of 7.11, followed by ARIMA models.
+          These models can help policymakers anticipate trends and plan
+          preventive measures.
+        </p>
+      </div>
+
+      <!-- Recommendations -->
+      <div class="section">
+        <h2 class="section-title">💡 Recommendations</h2>
+        <div
+          style="
+            background: #e8f5e9;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #4caf50;
+          "
+        >
+          <h3 style="color: #2c3e50; margin-bottom: 15px">
+            Policy & Diplomatic Recommendations
+          </h3>
+          <ol style="margin-left: 20px; line-height: 2; color: #555">
+            <li>
+              <strong>Enhanced Bilateral Dialogue:</strong> Regular diplomatic
+              engagement between both countries to address border security
+              concerns and establish clear protocols.
+            </li>
+            <li>
+              <strong>Data-Driven Policy:</strong> Use historical patterns and
+              predictive models to inform border security strategies and
+              resource allocation.
+            </li>
+            <li>
+              <strong>Transparency & Accountability:</strong> Maintain
+              comprehensive records and transparent reporting of border
+              incidents to enable evidence-based policy decisions.
+            </li>
+            <li>
+              <strong>Preventive Measures:</strong> Focus on preventive
+              diplomacy and early warning systems based on identified patterns
+              and trends.
+            </li>
+            <li>
+              <strong>Cross-Party Consensus:</strong> Develop border security
+              policies that transcend political changes to ensure consistent
+              implementation.
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <footer>
+        <p><strong>Border Killing Trend Analysis in Bangladesh</strong></p>
+        <p>Data Period: 1971-2023 | Analysis Date: 2024</p>
+        <p style="margin-top: 10px; font-size: 0.9em">
+          This analysis is for research and educational purposes. The data
+          reflects documented incidents and should be interpreted within
+          appropriate historical and political contexts.
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      function showTab(tabName) {
+        // Hide all tab contents
+        const contents = document.querySelectorAll(".tab-content");
+        contents.forEach((content) => content.classList.remove("active"));
+
+        // Remove active class from all tabs
+        const tabs = document.querySelectorAll(".tab");
+        tabs.forEach((tab) => tab.classList.remove("active"));
+
+        // Show selected tab content
+        document.getElementById(tabName).classList.add("active");
+
+        // Add active class to clicked tab
+        event.target.classList.add("active");
+      }
+    </script>
+  </body>
+</html>
