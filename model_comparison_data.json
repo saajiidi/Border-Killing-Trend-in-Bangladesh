@@ -1,0 +1,269 @@
+{
+  "rmse_comparison": {
+    "labels": [
+      "Naive",
+      "ARIMA",
+      "Moving Avg",
+      "Average",
+      "ARIMA_alt",
+      "Auto-ARIMA",
+      "SES",
+      "Holt",
+      "Holt-Winters",
+      "SARIMA",
+      "LSTM",
+      "Exponential Trend",
+      "Linear Trend"
+    ],
+    "data": [
+      7.11,
+      13.41,
+      14.23,
+      17.67,
+      17.98,
+      19.91,
+      22.32,
+      23.67,
+      24.16,
+      26.66,
+      27.69,
+      38.9,
+      42.96
+    ],
+    "colors": [
+      "#764ba2",
+      "#667eea",
+      "#764ba2",
+      "#764ba2",
+      "#667eea",
+      "#667eea",
+      "#764ba2",
+      "#764ba2",
+      "#764ba2",
+      "#667eea",
+      "#764ba2",
+      "#764ba2",
+      "#764ba2"
+    ]
+  },
+  "mae_comparison": {
+    "labels": [
+      "Naive",
+      "ARIMA",
+      "Moving Avg",
+      "Average",
+      "ARIMA_alt",
+      "Auto-ARIMA",
+      "SES",
+      "Holt",
+      "Holt-Winters",
+      "SARIMA",
+      "LSTM",
+      "Exponential Trend",
+      "Linear Trend"
+    ],
+    "data": [
+      5.5,
+      12.9,
+      13.33,
+      16.96,
+      17.38,
+      19.05,
+      21.76,
+      23.23,
+      19.83,
+      25.84,
+      27.26,
+      38.71,
+      42.75
+    ],
+    "colors": [
+      "#764ba2",
+      "#667eea",
+      "#764ba2",
+      "#764ba2",
+      "#667eea",
+      "#667eea",
+      "#764ba2",
+      "#764ba2",
+      "#764ba2",
+      "#667eea",
+      "#764ba2",
+      "#764ba2",
+      "#764ba2"
+    ]
+  },
+  "arima_vs_others": {
+    "arima_models": {
+      "labels": [
+        "ARIMA",
+        "ARIMA_alt",
+        "Auto-ARIMA",
+        "SARIMA"
+      ],
+      "rmse": [
+        13.41,
+        17.98,
+        19.91,
+        26.66
+      ],
+      "mae": [
+        12.9,
+        17.38,
+        19.05,
+        25.84
+      ]
+    },
+    "top_others": {
+      "labels": [
+        "Naive",
+        "Moving Avg",
+        "Average",
+        "SES",
+        "Holt",
+        "LSTM"
+      ],
+      "rmse": [
+        7.11,
+        14.23,
+        17.67,
+        22.32,
+        23.67,
+        27.69
+      ],
+      "mae": [
+        5.5,
+        13.33,
+        16.96,
+        21.76,
+        23.23,
+        27.26
+      ]
+    }
+  },
+  "performance_metrics": {
+    "top_5_models": {
+      "labels": [
+        "Naive",
+        "ARIMA",
+        "Moving Avg",
+        "Average",
+        "ARIMA_alt"
+      ],
+      "rmse": [
+        7.11,
+        13.41,
+        14.23,
+        17.67,
+        17.98
+      ],
+      "mae": [
+        5.5,
+        12.9,
+        13.33,
+        16.96,
+        17.38
+      ],
+      "mape": [
+        20.63,
+        68.25,
+        71.77,
+        89.91,
+        91.48
+      ]
+    }
+  },
+  "full_data": {
+    "Naive": {
+      "MAE": 5.5,
+      "MSE": 50.5,
+      "RMSE": 7.11,
+      "MAPE": 20.63,
+      "R\u00b2": -1.02
+    },
+    "ARIMA": {
+      "MAE": 12.9,
+      "MSE": 179.7,
+      "RMSE": 13.41,
+      "MAPE": 68.25,
+      "R\u00b2": -6.29
+    },
+    "Moving Avg": {
+      "MAE": 13.33,
+      "MSE": 202.44,
+      "RMSE": 14.23,
+      "MAPE": 71.77,
+      "R\u00b2": -7.21
+    },
+    "Average": {
+      "MAE": 16.96,
+      "MSE": 312.28,
+      "RMSE": 17.67,
+      "MAPE": 89.91,
+      "R\u00b2": -11.66
+    },
+    "ARIMA_alt": {
+      "MAE": 17.38,
+      "MSE": 323.2,
+      "RMSE": 17.98,
+      "MAPE": 91.48,
+      "R\u00b2": -12.1
+    },
+    "Auto-ARIMA": {
+      "MAE": 19.05,
+      "MSE": 396.3,
+      "RMSE": 19.91,
+      "MAPE": 101.15,
+      "R\u00b2": -15.07
+    },
+    "SES": {
+      "MAE": 21.76,
+      "MSE": 498.03,
+      "RMSE": 22.32,
+      "MAPE": 113.92,
+      "R\u00b2": -19.19
+    },
+    "Holt": {
+      "MAE": 23.23,
+      "MSE": 560.33,
+      "RMSE": 23.67,
+      "MAPE": 120.85,
+      "R\u00b2": -21.72
+    },
+    "Holt-Winters": {
+      "MAE": 19.83,
+      "MSE": 583.49,
+      "RMSE": 24.16,
+      "MAPE": 113.3,
+      "R\u00b2": -22.65
+    },
+    "SARIMA": {
+      "MAE": 25.84,
+      "MSE": 710.57,
+      "RMSE": 26.66,
+      "MAPE": 135.63,
+      "R\u00b2": -27.81
+    },
+    "LSTM": {
+      "MAE": 27.26,
+      "MSE": 766.64,
+      "RMSE": 27.69,
+      "MAPE": 141.33,
+      "R\u00b2": -30.08
+    },
+    "Exponential Trend": {
+      "MAE": 38.71,
+      "MSE": 1512.86,
+      "RMSE": 38.9,
+      "MAPE": 197.49,
+      "R\u00b2": -60.33
+    },
+    "Linear Trend": {
+      "MAE": 42.75,
+      "MSE": 1845.58,
+      "RMSE": 42.96,
+      "MAPE": 218.18,
+      "R\u00b2": -73.82
+    }
+  }
+}
