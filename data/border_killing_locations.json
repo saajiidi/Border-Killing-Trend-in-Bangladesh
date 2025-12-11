@@ -1,0 +1,103 @@
+{
+    "incidents": [
+        {
+            "name": "Mohammad Raisuddin (BGB Member)",
+            "date": "2024-01-22",
+            "location": "Jalapara, Jessore",
+            "lat": 23.1667,
+            "lon": 88.9833,
+            "description": "BGB soldier killed by BSF firing."
+        },
+        {
+            "name": "Rafiul Islam Tiklu",
+            "date": "2024-01-28",
+            "location": "Patgram, Lalmonirhat",
+            "lat": 26.3167,
+            "lon": 89.0167,
+            "description": "Fatally shot by BSF members."
+        },
+        {
+            "name": "Swarna Das",
+            "date": "2024-09-01",
+            "location": "Kulaura, Moulvibazar",
+            "lat": 24.5167,
+            "lon": 92.0333,
+            "description": "13-year-old girl shot while attempting to cross the border."
+        },
+        {
+            "name": "Mohammad Anwar Hossain",
+            "date": "2024-06-09",
+            "location": "Jamtala, Burichang, Comilla",
+            "lat": 23.5500,
+            "lon": 91.1333,
+            "description": "Shot and killed by BSF along the Jamtala border."
+        },
+        {
+            "name": "Md. Kamal Hossain",
+            "date": "2024-10-07",
+            "location": "Sadar South, Comilla",
+            "lat": 23.3500,
+            "lon": 91.1833,
+            "description": "Shot and killed by BSF in October 2024."
+        },
+        {
+            "name": "Two Bangladeshi Citizens",
+            "date": "2022-11-09",
+            "location": "Mahishtuli, Lalmonirhat",
+            "lat": 26.2500,
+            "lon": 89.1000,
+            "description": "Two Bangladeshi citizens shot dead by BSF."
+        }
+    ],
+    "yearly_stats": [
+        {
+            "year": 2013,
+            "killed": 28
+        },
+        {
+            "year": 2014,
+            "killed": 35
+        },
+        {
+            "year": 2015,
+            "killed": 42
+        },
+        {
+            "year": 2016,
+            "killed": 29
+        },
+        {
+            "year": 2017,
+            "killed": 23
+        },
+        {
+            "year": 2018,
+            "killed": 14
+        },
+        {
+            "year": 2019,
+            "killed": 41
+        },
+        {
+            "year": 2020,
+            "killed": 48
+        },
+        {
+            "year": 2021,
+            "killed": 18
+        },
+        {
+            "year": 2022,
+            "killed": 23
+        },
+        {
+            "year": 2023,
+            "killed": 31
+        },
+        {
+            "year": 2024,
+            "killed": 15,
+            "note": "Jan-Oct 2024"
+        }
+    ]
+}

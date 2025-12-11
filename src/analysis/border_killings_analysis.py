@@ -108,7 +108,7 @@ class BorderKillingsAnalyzer:
         plt.tight_layout()
         if save_plot:
             plt.savefig('plots/killings_by_india_party.png', dpi=300, bbox_inches='tight')
-        plt.show()
+        # plt.show()
         
         return killed_by_party_india
     
@@ -141,7 +141,7 @@ class BorderKillingsAnalyzer:
         plt.tight_layout()
         if save_plot:
             plt.savefig('plots/killings_by_bangladesh_party.png', dpi=300, bbox_inches='tight')
-        plt.show()
+        # plt.show()
         
         return killed_by_party_bd
     
@@ -216,7 +216,7 @@ class BorderKillingsAnalyzer:
         plt.tight_layout()
         if save_plot:
             plt.savefig('plots/average_killings_comparison.png', dpi=300, bbox_inches='tight')
-        plt.show()
+        # plt.show()
         
         # Print results
         print("\n=== AVERAGE KILLINGS PER YEAR ===")
@@ -251,7 +251,7 @@ class BorderKillingsAnalyzer:
         plt.tight_layout()
         if save_plot:
             plt.savefig('plots/killings_trend_over_time.png', dpi=300, bbox_inches='tight')
-        plt.show()
+        # plt.show()
     
     def generate_comprehensive_report(self, save_plots=False):
         """Generate a comprehensive analysis report"""
